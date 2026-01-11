@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title>Variable Scope</title>
+  </head>
+  <body>
+    <script>
+      let x = 5;
+      let y = "5";
+      let z = 8;
+      let arr = [1, 2, 3];
+
+      // Equality and Inequality
+      console.log("x == y:", x == y); // true (loose equality, "5" converted to 5)
+      console.log("x === y:", x === y); // false (strict equality, different types)
+      console.log("x != z:", x != z); // true
+      console.log("x !== y:", x !== y); // true (strict inequality, different types)
+
+      // Comparison Operators
+      console.log("x > z:", x > z); // false
+      console.log("x < z:", x < z); // true
+      console.log("x >= 5:", x >= 5); // true
+      console.log("z <= 8:", z <= 8); // true
+
+      // Other relational operators
+      console.log("0 == false:", 0 == false); // true (type coercion)
+      console.log("0 === false:", 0 === false); // false (different types)
+
+      // The 'in' operator checks if a property exists in an object or an index in an array
+      console.log("5 in arr:", 5 in arr); // true (index 0 exists)
+
+      // The 'instanceof' operator checks if an object is an instance of a specific class
+      console.log("arr instanceof Array:", arr instanceof Array); // true
+
+      console.log("x instanceof Number:", x instanceof Number); // false (x is a primitive)
+      console.log("new Number(x) instanceof Number:", new Number(x) instanceof Number); // true
+      console.log("null==undefined:", null==undefined); // true
+        console.log("null===undefined:", null===undefined); // false
+    </script>
+  </body>
+</html>

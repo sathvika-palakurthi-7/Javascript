@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <title>Variable Scope</title>
+  </head>
+  <body>
+    <script>
+      let temperature = 25;
+
+      if (temperature > 35) {
+        console.log("It's a hot day!");
+      }
+
+      let hour = 11; // 2:00 PM
+
+      if (hour < 12) {
+        console.log("Good morning!");
+      } else {
+        console.log("Good afternoon!");
+      }
+
+      let score = 85;
+
+      if (score >= 90) {
+        console.log("Grade: A");
+      } else if (score >= 80) {
+        console.log("Grade: B"); // This will run
+      } else if (score >= 70) {
+        console.log("Grade: C");
+      } else {
+        console.log("Grade: F");
+      }
+
+      //   let age = 20;
+      //   let message;
+
+      //   if (age >= 18) {
+      //     message = "You can vote.";
+      //   } else {
+      //     message = "Too young to vote.";
+      //   }
+      //   console.log(message);
+
+      let age = 20;
+      let message = age >= 18 ? "You can vote." : "Too young to vote.";
+
+      console.log(message); // Output: "You can vote."
+    </script>
+  </body>
+</html>

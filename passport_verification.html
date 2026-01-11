@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Switch Statement - Passport Nationality Verification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 30px;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 15px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        h2 {
+            color: #667eea;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+            padding-left: 15px;
+        }
+        
+        .demo-section {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+        }
+        
+        .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .output {
+            background-color: #e8f5e9;
+            border: 2px solid #4caf50;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            min-height: 40px;
+        }
+        
+        .error-output {
+            background-color: #ffebee;
+            border: 2px solid #f44336;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .input-group {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        input {
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+        }
+        
+        select {
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: white;
+            cursor: pointer;
+            min-width: 200px;
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            white-space: nowrap;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .info-box {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .info-box strong {
+            color: #1976d2;
+        }
+        
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .success-box {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .result-card {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .passport-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .info-item {
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+        }
+        
+        .info-item strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .flag {
+            font-size: 48px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        table thead {
+            background-color: #667eea;
+            color: white;
+        }
+        
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        table tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛂 JavaScript Switch Statement</h1>
+        <p class="subtitle">Passport Nationality Verification System</p>
+
+        <!-- Interactive Passport Verification -->
+        <div class="demo-section">
+            <h2>1. Interactive Passport Nationality Verification</h2>
+            <p>Enter a country code or select from the dropdown to verify nationality:</p>
+            
+            <div class="input-group">
+                <select id="countryCode">
+                    <option value="">Select a country code...</option>
+                    <option value="US">US - United States</option>
+                    <option value="GB">GB - United Kingdom</option>
+                    <option value="FR">FR - France</option>
+                    <option value="JP">JP - Japan</option>
+                    <option value="CA">CA - Canada</option>
+                    <option value="AU">AU - Australia</option>
+                    <option value="IN">IN - India</option>
+                    <option value="BR">BR - Brazil</option>
+                    <option value="MX">MX - Mexico</option>
+                    <option value="DE">DE - Germany</option>
+                </select>
+                <button onclick="verifyPassport()">Verify Nationality</button>
+            </div>
+            
+            <div id="passportResult"></div>
+        </div>
+
+        <!-- Basic Switch Statement Explanation -->
+        <div class="demo-section">
+            <h2>2. Basic Switch Statement Syntax</h2>
+            <div class="code-block">switch (expression) {
+    case value1:
+        // code if expression === value1
+        break;
+    case value2:
+        // code if expression === value2
+        break;
+    default:
+        // code if no cases match
+}
+            </div>
+            <button onclick="demonstrateBasicSwitch()">Run Basic Example</button>
+            <div id="output2" class="output" style="display:none;"></div>
+        </div>
+
+        <!-- Switch with Fall-through -->
+        <div class="demo-section">
+            <h2>3. Switch Fall-through (without break)</h2>
+            <p>When you don't use <code>break</code>, execution continues to the next case:</p>
+            <div class="code-block">switch (day) {
+    case 'Monday':
+    case 'Tuesday':
+    case 'Wednesday':
+    case 'Thursday':
+    case 'Friday':
+        console.log('Weekday');
+        break;
+    case 'Saturday':
+    case 'Sunday':
+        console.log('Weekend');
+        break;
+}
+            </div>
+            <button onclick="demonstrateFallthrough()">Run Fall-through Example</button>
+            <div id="output3" class="output" style="display:none;"></div>
+        </div>
+
+        <!-- Multiple Conditions -->
+        <div class="demo-section">
+            <h2>4. Switch with Multiple Conditions</h2>
+            <p>Test a grade classification system:</p>
+            <div class="input-group">
+                <input type="number" id="gradeInput" placeholder="Enter a grade (0-100)" min="0" max="100">
+                <button onclick="classifyGrade()">Classify Grade</button>
+            </div>
+            <div id="output4" class="output" style="display:none;"></div>
+        </div>
+
+        <!-- Default Case -->
+        <div class="demo-section">
+            <h2>5. Default Case Handling</h2>
+            <p>Handle unexpected values with the default case:</p>
+            <div class="input-group">
+                <input type="text" id="colorInput" placeholder="Enter a color (red, green, blue, yellow)" style="min-width: 250px;">
+                <button onclick="identifyColor()">Identify Color</button>
+            </div>
+            <div id="output5" class="output" style="display:none;"></div>
+        </div>
+
+        <!-- Real-world Example: Vehicle License Plate -->
+        <div class="demo-section">
+            <h2>6. Real-world Example: Vehicle License Plate</h2>
+            <p>Identify vehicle type based on license plate prefix:</p>
+            <div class="input-group">
+                <input type="text" id="licensePlate" placeholder="Enter prefix (CAR, BUS, TRUCK, BIKE)" maxlength="10" style="min-width: 200px;">
+                <button onclick="identifyVehicle()">Identify Vehicle</button>
+            </div>
+            <div id="output6" class="output" style="display:none;"></div>
+        </div>
+
+        <!-- Comparison: Switch vs If-Else -->
+        <div class="demo-section">
+            <h2>7. Switch vs If-Else</h2>
+            <div class="info-box">
+                <strong>When to use Switch:</strong>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Multiple conditions on a single variable</li>
+                    <li>Cleaner and more readable than many if-else statements</li>
+                    <li>Better performance for many cases</li>
+                </ul>
+            </div>
+            <button onclick="compareApproaches()">Show Comparison</button>
+            <div id="output7" class="output" style="display:none;"></div>
+        </div>
+
+        <!-- Country Reference Table -->
+        <div class="demo-section">
+            <h2>8. Supported Countries Reference</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Country</th>
+                        <th>Flag</th>
+                        <th>Capital</th>
+                        <th>Continent</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>US</td>
+                        <td>United States</td>
+                        <td>🇺🇸</td>
+                        <td>Washington D.C.</td>
+                        <td>North America</td>
+                    </tr>
+                    <tr>
+                        <td>GB</td>
+                        <td>United Kingdom</td>
+                        <td>🇬🇧</td>
+                        <td>London</td>
+                        <td>Europe</td>
+                    </tr>
+                    <tr>
+                        <td>FR</td>
+                        <td>France</td>
+                        <td>🇫🇷</td>
+                        <td>Paris</td>
+                        <td>Europe</td>
+                    </tr>
+                    <tr>
+                        <td>JP</td>
+                        <td>Japan</td>
+                        <td>🇯🇵</td>
+                        <td>Tokyo</td>
+                        <td>Asia</td>
+                    </tr>
+                    <tr>
+                        <td>CA</td>
+                        <td>Canada</td>
+                        <td>🇨🇦</td>
+                        <td>Ottawa</td>
+                        <td>North America</td>
+                    </tr>
+                    <tr>
+                        <td>AU</td>
+                        <td>Australia</td>
+                        <td>🇦🇺</td>
+                        <td>Canberra</td>
+                        <td>Oceania</td>
+                    </tr>
+                    <tr>
+                        <td>IN</td>
+                        <td>India</td>
+                        <td>🇮🇳</td>
+                        <td>New Delhi</td>
+                        <td>Asia</td>
+                    </tr>
+                    <tr>
+                        <td>BR</td>
+                        <td>Brazil</td>
+                        <td>🇧🇷</td>
+                        <td>Brasília</td>
+                        <td>South America</td>
+                    </tr>
+                    <tr>
+                        <td>MX</td>
+                        <td>Mexico</td>
+                        <td>🇲🇽</td>
+                        <td>Mexico City</td>
+                        <td>North America</td>
+                    </tr>
+                    <tr>
+                        <td>DE</td>
+                        <td>Germany</td>
+                        <td>🇩🇪</td>
+                        <td>Berlin</td>
+                        <td>Europe</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Best Practices -->
+        <div class="demo-section">
+            <h2>9. Best Practices for Switch Statements</h2>
+            <div class="success-box">
+                <strong>✓ DO:</strong>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Always use <code>break</code> unless intentional fall-through</li>
+                    <li>Include a <code>default</code> case to handle unexpected values</li>
+                    <li>Group related cases together</li>
+                    <li>Keep case logic simple; use functions for complex operations</li>
+                </ul>
+            </div>
+            <div class="warning-box">
+                <strong>✗ DON'T:</strong>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Forget the <code>break</code> statement (unless intentional)</li>
+                    <li>Omit the <code>default</code> case</li>
+                    <li>Use complex expressions as cases</li>
+                    <li>Use switch for range checking (use if-else instead)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const countryData = {
+            'US': {
+                name: 'United States of America',
+                capital: 'Washington D.C.',
+                flag: '🇺🇸',
+                continent: 'North America',
+                language: 'English',
+                population: '331,000,000'
+            },
+            'GB': {
+                name: 'United Kingdom',
+                capital: 'London',
+                flag: '🇬🇧',
+                continent: 'Europe',
+                language: 'English',
+                population: '67,220,000'
+            },
+            'FR': {
+                name: 'France',
+                capital: 'Paris',
+                flag: '🇫🇷',
+                continent: 'Europe',
+                language: 'French',
+                population: '67,750,000'
+            },
+            'JP': {
+                name: 'Japan',
+                capital: 'Tokyo',
+                flag: '🇯🇵',
+                continent: 'Asia',
+                language: 'Japanese',
+                population: '125,100,000'
+            },
+            'CA': {
+                name: 'Canada',
+                capital: 'Ottawa',
+                flag: '🇨🇦',
+                continent: 'North America',
+                language: 'English, French',
+                population: '38,930,000'
+            },
+            'AU': {
+                name: 'Australia',
+                capital: 'Canberra',
+                flag: '🇦🇺',
+                continent: 'Oceania',
+                language: 'English',
+                population: '25,690,000'
+            },
+            'IN': {
+                name: 'India',
+                capital: 'New Delhi',
+                flag: '🇮🇳',
+                continent: 'Asia',
+                language: 'Hindi, English',
+                population: '1,380,000,000'
+            },
+            'BR': {
+                name: 'Brazil',
+                capital: 'Brasília',
+                flag: '🇧🇷',
+                continent: 'South America',
+                language: 'Portuguese',
+                population: '212,600,000'
+            },
+            'MX': {
+                name: 'Mexico',
+                capital: 'Mexico City',
+                flag: '🇲🇽',
+                continent: 'North America',
+                language: 'Spanish',
+                population: '128,000,000'
+            },
+            'DE': {
+                name: 'Germany',
+                capital: 'Berlin',
+                flag: '🇩🇪',
+                continent: 'Europe',
+                language: 'German',
+                population: '83,370,000'
+            }
+        };
+
+        function verifyPassport() {
+            const code = document.getElementById('countryCode').value.toUpperCase();
+            let result = '';
+
+            // Switch statement to verify nationality
+            switch(code) {
+                case 'US':
+                    result = generatePassportCard('US');
+                    break;
+                case 'GB':
+                    result = generatePassportCard('GB');
+                    break;
+                case 'FR':
+                    result = generatePassportCard('FR');
+                    break;
+                case 'JP':
+                    result = generatePassportCard('JP');
+                    break;
+                case 'CA':
+                    result = generatePassportCard('CA');
+                    break;
+                case 'AU':
+                    result = generatePassportCard('AU');
+                    break;
+                case 'IN':
+                    result = generatePassportCard('IN');
+                    break;
+                case 'BR':
+                    result = generatePassportCard('BR');
+                    break;
+                case 'MX':
+                    result = generatePassportCard('MX');
+                    break;
+                case 'DE':
+                    result = generatePassportCard('DE');
+                    break;
+                default:
+                    result = '<div class="error-output">❌ Invalid country code! Please select from the dropdown or enter a valid code (US, GB, FR, JP, CA, AU, IN, BR, MX, DE)</div>';
+            }
+
+            document.getElementById('passportResult').innerHTML = result;
+        }
+
+        function generatePassportCard(code) {
+            const data = countryData[code];
+            return `<div class="result-card">
+                <div style="text-align: center;">
+                    <div class="flag">${data.flag}</div>
+                    <h3 style="color: #667eea; font-size: 24px; margin: 10px 0;">${data.name}</h3>
+                </div>
+                <div class="passport-info">
+                    <div class="info-item">
+                        <strong>Country Code:</strong>
+                        ${code}
+                    </div>
+                    <div class="info-item">
+                        <strong>Capital:</strong>
+                        ${data.capital}
+                    </div>
+                    <div class="info-item">
+                        <strong>Continent:</strong>
+                        ${data.continent}
+                    </div>
+                    <div class="info-item">
+                        <strong>Primary Language:</strong>
+                        ${data.language}
+                    </div>
+                    <div class="info-item">
+                        <strong>Population:</strong>
+                        ${data.population}
+                    </div>
+                    <div class="info-item">
+                        <strong>Status:</strong>
+                        ✅ Passport Verified
+                    </div>
+                </div>
+            </div>`;
+        }
+
+        function displayOutput(elementId, content) {
+            const element = document.getElementById(elementId);
+            element.innerHTML = content;
+            element.style.display = 'block';
+        }
+
+        function demonstrateBasicSwitch() {
+            let output = '<strong>Basic Switch Statement Demo:</strong><br><br>';
+            
+            const fruits = ['apple', 'banana', 'orange'];
+            
+            for (let fruit of fruits) {
+                let fruitInfo = '';
+                switch(fruit) {
+                    case 'apple':
+                        fruitInfo = 'Red fruit, rich in fiber';
+                        break;
+                    case 'banana':
+                        fruitInfo = 'Yellow fruit, rich in potassium';
+                        break;
+                    case 'orange':
+                        fruitInfo = 'Orange citrus fruit, rich in Vitamin C';
+                        break;
+                    default:
+                        fruitInfo = 'Unknown fruit';
+                }
+                output += `📍 ${fruit.toUpperCase()}: ${fruitInfo}<br>`;
+            }
+            
+            displayOutput('output2', output);
+        }
+
+        function demonstrateFallthrough() {
+            let output = '<strong>Fall-through Example (Days Classification):</strong><br><br>';
+            
+            const days = ['Monday', 'Wednesday', 'Saturday', 'Sunday'];
+            
+            for (let day of days) {
+                let type = '';
+                switch(day) {
+                    case 'Monday':
+                    case 'Tuesday':
+                    case 'Wednesday':
+                    case 'Thursday':
+                    case 'Friday':
+                        type = 'Weekday';
+                        break;
+                    case 'Saturday':
+                    case 'Sunday':
+                        type = 'Weekend';
+                        break;
+                    default:
+                        type = 'Unknown';
+                }
+                output += `📅 ${day}: ${type}<br>`;
+            }
+            
+            displayOutput('output3', output);
+        }
+
+        function classifyGrade() {
+            const grade = parseInt(document.getElementById('gradeInput').value);
+            let classification = '';
+            let output = '';
+
+            if (isNaN(grade) || grade < 0 || grade > 100) {
+                output = '<div class="error-output">❌ Please enter a valid grade between 0 and 100</div>';
+            } else {
+                // Switch with ranges using true as expression
+                switch(true) {
+                    case grade >= 90:
+                        classification = 'A - Excellent';
+                        break;
+                    case grade >= 80:
+                        classification = 'B - Good';
+                        break;
+                    case grade >= 70:
+                        classification = 'C - Satisfactory';
+                        break;
+                    case grade >= 60:
+                        classification = 'D - Passing';
+                        break;
+                    case grade >= 0:
+                        classification = 'F - Failing';
+                        break;
+                }
+                output = `<div class="success-box"><strong>Grade: ${grade}</strong><br>Classification: <strong>${classification}</strong></div>`;
+            }
+            
+            displayOutput('output4', output);
+        }
+
+        function identifyColor() {
+            const color = document.getElementById('colorInput').value.toLowerCase().trim();
+            let output = '';
+
+            switch(color) {
+                case 'red':
+                    output = '🔴 Red - The color of passion and energy';
+                    break;
+                case 'green':
+                    output = '🟢 Green - The color of nature and growth';
+                    break;
+                case 'blue':
+                    output = '🔵 Blue - The color of calm and trust';
+                    break;
+                case 'yellow':
+                    output = '🟡 Yellow - The color of happiness and optimism';
+                    break;
+                case 'purple':
+                    output = '🟣 Purple - The color of creativity and mystery';
+                    break;
+                case 'orange':
+                    output = '🟠 Orange - The color of enthusiasm and warmth';
+                    break;
+                default:
+                    output = '❌ Unknown color! Try red, green, blue, yellow, purple, or orange';
+            }
+
+            displayOutput('output5', `<div class="${color === 'red' || color === 'green' || color === 'blue' || color === 'yellow' || color === 'purple' || color === 'orange' ? 'success-box' : 'error-output'}">${output}</div>`);
+        }
+
+        function identifyVehicle() {
+            const prefix = document.getElementById('licensePlate').value.toUpperCase().trim();
+            let output = '';
+
+            switch(prefix) {
+                case 'CAR':
+                    output = '🚗 Passenger Car<br>- Personal vehicle<br>- Typically 4-5 seats<br>- License: Class C';
+                    break;
+                case 'BUS':
+                    output = '🚌 Bus<br>- Public transport vehicle<br>- Large capacity (30-50+ seats)<br>- License: Class D';
+                    break;
+                case 'TRUCK':
+                    output = '🚚 Truck<br>- Commercial vehicle<br>- Used for cargo transport<br>- License: Class B/C';
+                    break;
+                case 'BIKE':
+                    output = '🏍️ Motorcycle<br>- Two-wheeled vehicle<br>- High maneuverability<br>- License: Class A/A1';
+                    break;
+                default:
+                    output = '❌ Unknown vehicle type! Try CAR, BUS, TRUCK, or BIKE';
+            }
+
+            displayOutput('output6', `<div class="${['CAR', 'BUS', 'TRUCK', 'BIKE'].includes(prefix) ? 'success-box' : 'error-output'}">${output}</div>`);
+        }
+
+        function compareApproaches() {
+            let output = '<strong>Switch vs If-Else Comparison:</strong><br><br>';
+            
+            output += '<strong>Using Switch:</strong><br>';
+            output += '<div class="code-block">switch(status) {<br>';
+            output += '    case "pending": console.log("Waiting..."); break;<br>';
+            output += '    case "approved": console.log("Approved!"); break;<br>';
+            output += '    case "rejected": console.log("Rejected"); break;<br>';
+            output += '    default: console.log("Unknown");<br>';
+            output += '}</div>';
+            
+            output += '<strong>Using If-Else:</strong><br>';
+            output += '<div class="code-block">if (status === "pending") {<br>';
+            output += '    console.log("Waiting...");<br>';
+            output += '} else if (status === "approved") {<br>';
+            output += '    console.log("Approved!");<br>';
+            output += '} else if (status === "rejected") {<br>';
+            output += '    console.log("Rejected");<br>';
+            output += '} else {<br>';
+            output += '    console.log("Unknown");<br>';
+            output += '}</div>';
+            
+            output += '<strong>Advantages of Switch:</strong><br>';
+            output += '✓ Cleaner and more readable<br>';
+            output += '✓ Better performance for many cases<br>';
+            output += '✓ Easier to maintain<br>';
+            output += '✓ Natural grouping of cases<br>';
+            
+            displayOutput('output7', output);
+        }
+    </script>
+</body>
+</html>

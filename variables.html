@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Variables Demonstration</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #0066cc;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #0066cc;
+            margin-top: 30px;
+        }
+        .demo-box {
+            background-color: white;
+            border-left: 4px solid #0066cc;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .code {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        .output {
+            background-color: #e8f5e9;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+        button {
+            background-color: #0066cc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 5px 10px 0;
+            font-size: 14px;
+        }
+        button:hover {
+            background-color: #0052a3;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Variables Demonstration</h1>
+    <p>Learn about var, let, and const, and how JavaScript variables work</p>
+
+    <!-- Variable Declaration -->
+    <div class="demo-box">
+        <h2>1. Variable Declaration (var, let, const)</h2>
+        <p>JavaScript has three ways to declare variables:</p>
+        <div class="code">
+var age = 25;           // Function-scoped, can be redeclared<br>
+let name = "John";      // Block-scoped, cannot be redeclared<br>
+const city = "NewYork"; // Block-scoped, cannot be reassigned
+        </div>
+        <button onclick="demonstrateVariableDeclaration()">Run Demo</button>
+        <div id="output1" class="output" style="display:none;"></div>
+    </div>
+
+    <!-- Data Types -->
+    <div class="demo-box">
+        <h2>2. JavaScript Data Types</h2>
+        <p>JavaScript variables can hold different data types:</p>
+        <button onclick="demonstrateDataTypes()">Run Demo</button>
+        <div id="output2" class="output" style="display:none;"></div>
+    </div>
+
+    <!-- Variable Scope -->
+    <div class="demo-box">
+        <h2>3. Variable Scope</h2>
+        <p>Scope determines where variables can be accessed:</p>
+        <button onclick="demonstrateScope()">Run Demo</button>
+        <div id="output3" class="output" style="display:none;"></div>
+    </div>
+
+    <!-- Hoisting -->
+    <div class="demo-box">
+        <h2>4. Variable Hoisting</h2>
+        <p>Variables declared with var are hoisted to the top of their scope:</p>
+        <button onclick="demonstrateHoisting()">Run Demo</button>
+        <div id="output4" class="output" style="display:none;"></div>
+    </div>
+
+    <!-- Type Conversion -->
+    <div class="demo-box">
+        <h2>5. Type Conversion & Coercion</h2>
+        <p>Variables can be converted between types:</p>
+        <button onclick="demonstrateTypeConversion()">Run Demo</button>
+        <div id="output5" class="output" style="display:none;"></div>
+    </div>
+
+    <!-- Template Literals -->
+    <div class="demo-box">
+        <h2>6. Template Literals</h2>
+        <p>Use backticks to create strings with embedded variables:</p>
+        <button onclick="demonstrateTemplateLiterals()">Run Demo</button>
+        <div id="output6" class="output" style="display:none;"></div>
+    </div>
+
+    <!-- Naming Conventions -->
+    <div class="demo-box">
+        <h2>7. Variable Naming Conventions</h2>
+        <div class="code">
+// camelCase (recommended for JavaScript)<br>
+let firstName = "Alice";<br>
+let lastName = "Smith";<br>
+<br>
+// Other conventions:<br>
+let CONSTANT_VALUE = 100;  // ALL_CAPS for constants<br>
+let $dollar = "special";   // Can start with $ or _<br>
+let _underscore = "valid";
+        </div>
+        <button onclick="demonstrateNamingConventions()">Run Demo</button>
+        <div id="output7" class="output" style="display:none;"></div>
+    </div>
+
+    <!-- Best Practices -->
+    <div class="demo-box">
+        <h2>8. Best Practices</h2>
+        <div class="warning">
+            <strong>✓ Use const by default:</strong> It prevents accidental reassignment<br>
+            <strong>✓ Use let for variables that will change:</strong> It's block-scoped and safer<br>
+            <strong>✗ Avoid var:</strong> It has confusing hoisting and function scope behavior
+        </div>
+        <button onclick="demonstrateBestPractices()">Run Demo</button>
+        <div id="output8" class="output" style="display:none;"></div>
+    </div>
+
+    <script>
+        function displayOutput(elementId, content) {
+            const element = document.getElementById(elementId);
+            element.innerHTML = content;
+            element.style.display = 'block';
+        }
+
+        function demonstrateVariableDeclaration() {
+            let output = '<strong>Variable Declaration Demo:</strong><br><br>';
+            
+            var varExample = "var is function-scoped";
+            let letExample = "let is block-scoped";
+            const constExample = "const is block-scoped and immutable";
+            
+            output += '✓ var example: ' + varExample + '<br>';
+            output += '✓ let example: ' + letExample + '<br>';
+            output += '✓ const example: ' + constExample + '<br>';
+            
+            // Showing var can be redeclared
+            var varExample = "var can be redeclared";
+            output += '✓ var redeclared: ' + varExample + '<br>';
+            
+            displayOutput('output1', output);
+        }
+
+        function demonstrateDataTypes() {
+            let output = '<strong>Data Types:</strong><br><br>';
+            
+            let stringVar = "Hello";
+            let numberVar = 42;
+            let floatVar = 3.14;
+            let booleanVar = true;
+            let nullVar = null;
+            let undefinedVar;
+            let objectVar = { name: "John", age: 30 };
+            let arrayVar = [1, 2, 3, 4, 5];
+            
+            output += '📝 String: "' + stringVar + '" (typeof: ' + typeof stringVar + ')<br>';
+            output += '🔢 Number: ' + numberVar + ' (typeof: ' + typeof numberVar + ')<br>';
+            output += '🔢 Float: ' + floatVar + ' (typeof: ' + typeof floatVar + ')<br>';
+            output += '✓ Boolean: ' + booleanVar + ' (typeof: ' + typeof booleanVar + ')<br>';
+            output += '⚫ Null: ' + nullVar + ' (typeof: ' + typeof nullVar + ')<br>';
+            output += '❓ Undefined: ' + undefinedVar + ' (typeof: ' + typeof undefinedVar + ')<br>';
+            output += '📦 Object: ' + JSON.stringify(objectVar) + ' (typeof: ' + typeof objectVar + ')<br>';
+            output += '📊 Array: [1, 2, 3, 4, 5] (typeof: ' + typeof arrayVar + ')<br>';
+            
+            displayOutput('output2', output);
+        }
+
+        function demonstrateScope() {
+            let output = '<strong>Variable Scope Demo:</strong><br><br>';
+            
+            let globalVar = "I'm global";
+            
+            function functionScope() {
+                var funcVar = "I'm function-scoped";
+                return funcVar;
+            }
+            
+            {
+                let blockVar = "I'm block-scoped";
+                output += '✓ Inside block: blockVar = "' + blockVar + '"<br>';
+            }
+            
+            output += '✓ Global: ' + globalVar + '<br>';
+            output += '✓ Function scope: ' + functionScope() + '<br>';
+            output += '⚠️ blockVar outside block: Would cause error (undefined) - try accessing it in console<br>';
+            
+            displayOutput('output3', output);
+        }
+
+        function demonstrateHoisting() {
+            let output = '<strong>Hoisting Demo:</strong><br><br>';
+            
+            output += 'In the code below, var x is hoisted to the top:<br><br>';
+            output += 'Code executed:<br>';
+            output += 'console.log(x); // undefined (hoisted but not initialized)<br>';
+            output += 'var x = 5;<br>';
+            output += 'console.log(x); // 5<br><br>';
+            
+            // Actual hoisting demonstration
+            output += 'Result:<br>';
+            output += 'First log: undefined<br>';
+            
+            var x;
+            output += 'After declaration: ' + x + '<br>';
+            x = 5;
+            output += 'After assignment: ' + x + '<br><br>';
+            
+            output += '⚠️ Note: let and const are NOT hoisted in the same way (Temporal Dead Zone)';
+            
+            displayOutput('output4', output);
+        }
+
+        function demonstrateTypeConversion() {
+            let output = '<strong>Type Conversion & Coercion:</strong><br><br>';
+            
+            // Explicit conversion
+            output += '<strong>Explicit Conversion:</strong><br>';
+            output += 'String(123) = "' + String(123) + '"<br>';
+            output += 'Number("456") = ' + Number("456") + '<br>';
+            output += 'Boolean(1) = ' + Boolean(1) + '<br>';
+            output += 'Boolean(0) = ' + Boolean(0) + '<br><br>';
+            
+            // Implicit coercion
+            output += '<strong>Implicit Coercion:</strong><br>';
+            output += '"5" + 3 = ' + ("5" + 3) + ' (string concatenation)<br>';
+            output += '"10" - 5 = ' + ("10" - 5) + ' (numeric operation)<br>';
+            output += 'true + 1 = ' + (true + 1) + '<br>';
+            output += '"hello" * 2 = ' + ("hello" * 2) + ' (NaN - Not a Number)<br>';
+            
+            displayOutput('output5', output);
+        }
+
+        function demonstrateTemplateLiterals() {
+            let output = '<strong>Template Literals:</strong><br><br>';
+            
+            let firstName = "Alice";
+            let lastName = "Johnson";
+            let age = 28;
+            
+            let message = `My name is ${firstName} ${lastName} and I am ${age} years old.`;
+            output += 'Using template literals:<br>';
+            output += `<code>\`My name is ${firstName} ${lastName} and I am ${age} years old.\`</code><br><br>`;
+            
+            output += 'Result: ' + message + '<br><br>';
+            
+            let multiline = `This is a
+multiline
+string using template literals`;
+            
+            output += 'Multiline strings work too!<br>';
+            output += 'Result: ' + multiline.replace(/\n/g, '<br>');
+            
+            displayOutput('output6', output);
+        }
+
+        function demonstrateNamingConventions() {
+            let output = '<strong>Variable Naming Conventions:</strong><br><br>';
+            
+            // Good examples
+            let firstName = "John";
+            let userEmail = "john@example.com";
+            let isAdmin = true;
+            let MAX_USERS = 100;
+            
+            output += '✓ camelCase (recommended):<br>';
+            output += '  firstName = "' + firstName + '"<br>';
+            output += '  userEmail = "' + userEmail + '"<br>';
+            output += '  isAdmin = ' + isAdmin + '<br><br>';
+            
+            output += '✓ CONSTANT_VALUE (for constants):<br>';
+            output += '  MAX_USERS = ' + MAX_USERS + '<br><br>';
+            
+            output += '✗ Bad practice examples (avoid):<br>';
+            output += '  x = 5 (not descriptive)<br>';
+            output += '  firstName_name (mixed conventions)<br>';
+            output += '  1stVariable (cannot start with number)<br>';
+            
+            displayOutput('output7', output);
+        }
+
+        function demonstrateBestPractices() {
+            let output = '<strong>Best Practices Demo:</strong><br><br>';
+            
+            // Prefer const
+            const PI = 3.14159;
+            const userName = "Alice";
+            
+            // Use let when value will change
+            let counter = 0;
+            counter++;
+            counter++;
+            
+            // Avoid var
+            // var oldStyle = "avoid this";
+            
+            output += '✓ Using const for fixed values:<br>';
+            output += '  const PI = ' + PI + '<br>';
+            output += '  const userName = "' + userName + '"<br><br>';
+            
+            output += '✓ Using let for changing values:<br>';
+            output += '  let counter = 0;<br>';
+            output += '  counter++; counter++;<br>';
+            output += '  Final counter value: ' + counter + '<br><br>';
+            
+            output += '✗ Avoid using var:<br>';
+            output += '  Reason: Confusing hoisting behavior and function scope<br>';
+            
+            displayOutput('output8', output);
+        }
+    </script>
+</body>
+</html>

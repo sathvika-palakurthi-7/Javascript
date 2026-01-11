@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>Variable Scope in Programming Languages</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="DESCRIPTION"
+      content="An overview of variable scope in various programming languages."
+    />
+    <meta
+      name="KEYWORDS"
+      content="variable scope, programming languages, local scope, global scope, block scope"
+    />
+    <meta name="AUTHOR" content="Your Name" />
+  </head>
+
+  <body>
+    <h1>Variable Scope in Programming Languages</h1>
+    <p>
+      Variable scope refers to the context within a program where a variable is
+      accessible. Different programming languages implement variable scope in
+      various ways, typically categorized into local scope, global scope, and
+      block scope.
+    </p>
+
+    <script>
+      function exampleScope() {
+        if (true) {
+          var x = 10; // function-scoped
+          let y = 20; // block-scoped
+          const z = 30; // block-scoped
+          console.log(x, y, z); // Output: 10 20 30
+        }
+
+        console.log(x); // Output: 10 (accessible outside the if block)
+        console.log(y); // ReferenceError: y is not defined
+        console.log(z); // ReferenceError: z is not defined
+      }
+      exampleScope();
+    </script>
+  </body>
+</html>
