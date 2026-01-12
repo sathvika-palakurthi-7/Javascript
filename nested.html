@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>nesting</title>
+  </head>
+  <body>
+    <script>
+      const userProfile = {
+        username: "coder123",
+        email: "alex@example.com",
+        // First Level Nesting
+        preferences: {
+          theme: "dark",
+          notifications: true,
+          languages: ["English", "Spanish"],
+        },
+        // Second Level Nesting
+        address: {
+          city: "New York",
+          zip: 10001,
+          coordinates: {
+            lat: 40.7128,
+            lng: -74.006,
+          },
+        },
+      };
+      // Accessing first level
+      console.log(userProfile.preferences.theme); // Output: "dark"
+
+      // Accessing second level
+      console.log(userProfile.address.city); // Output: "New York"
+
+      userProfile.preferences.theme = "light";
+
+      console.log(userProfile.preferences.theme); // Output: "light"
+
+      // Accessing third level
+      console.log(userProfile.address.coordinates.lat); // Output: 40.7128
+      //   console.log("User Profile:", userProfile);
+    </script>
+  </body>
+</html>

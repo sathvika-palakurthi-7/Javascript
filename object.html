@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>Variable Scope</title>
+  </head>
+  <body>
+    <script>
+      const user = {
+        firstName: "Sathvika",
+        lastName: "palakurthi",
+        age: 20,
+        isLoggedIn: true,
+      };
+      console.log(user.firstName); // Output: Sathvika (Dot notation)
+      console.log(user["lastName"]); // Output: palakurthi (Bracket notation)
+
+      const car = { brand: "Toyota" };
+
+      // Adding a new property
+      car.year = 2024;
+      console.log(car); // Output: { brand: "Toyota", year: 2024 }
+      // Modifying an existing property
+      car.brand = "Honda";
+      console.log(car); // Output: { brand: "Honda", year: 2024 }
+
+
+      const calculator = {
+        num1: 10,
+        num2: 5,
+        add: function () {
+          return this.num1 + this.num2;
+        },
+
+        multiply: function () {
+          return this.num1 * this.num2;
+        },
+      };
+
+      
+
+
+
+     
+      console.log(calculator.add()); // Output: 15
+    </script>
+  </body>
+</html>

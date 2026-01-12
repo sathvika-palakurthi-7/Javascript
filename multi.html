@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Multiplication Table</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 200px;
+        margin-top: 20px;
+      }
+      td,
+      th {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Multiplication Table Generator</h2>
+    <input type="number" id="numInput" placeholder="Enter a number" />
+    <button onclick="generateTable()">Generate</button>
+
+    <div id="tableContainer"></div>
+
+    <script>
+      function generateTable() {
+        let num = document.getElementById("numInput").value;
+        let container = document.getElementById("tableContainer");
+
+        // Start building the HTML string for the table
+
+        let tableHTML = "<table><tr><th>Equation</th><th>Result</th></tr>";
+
+        for (let i = 1; i <= 10; i++) {
+          // Add a new row for each multiplication
+          tableHTML += `<tr>
+<td>${num} x ${i}</td>
+<td>${num * i}</td>
+</tr>`;
+        }
+
+        tableHTML += "</table>"; // Close the table tag
+        container.innerHTML = tableHTML; // Inject into the page
+      }
+    </script>
+  </body>
+</html>

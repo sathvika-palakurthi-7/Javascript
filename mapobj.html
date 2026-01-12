@@ -1,0 +1,79 @@
+<html>
+  <head>
+    <title>Variable Scope</title>
+  </head>
+  <body>
+    <script>
+      const userRoles = new Map();
+
+      // Adding items: .set(key, value)
+      userRoles.set("Amzad", "Admin");
+      userRoles.set("Sathwika", "Editor");
+      userRoles.set("renuka", "Viewer");
+
+      console.log(userRoles);
+
+      const Amzad = {
+        username: "coder123",
+        email: "alex@example.com",
+        // First Level Nesting
+        preferences: {
+          theme: "dark",
+          notifications: true,
+          languages: ["English", "Spanish"],
+        },
+        // Second Level Nesting
+        address: {
+          city: "New York",
+          zip: 10001,
+          coordinates: {
+            lat: 40.7128,
+            lng: -74.006,
+          },
+        },
+      };
+      const sathvika = {
+        username: "coder123",
+        email: "alex@example.com",
+        // First Level Nesting
+        preferences: {
+          theme: "dark",
+          notifications: true,
+          languages: ["English", "Spanish"],
+        },
+        // Second Level Nesting
+        address: {
+          city: "New York",
+          zip: 10001,
+          coordinates: {
+            lat: 40.7128,
+            lng: -74.006,
+          },
+        },
+      };
+      const renuka = {
+        username: "coder123",
+        email: "alex@example.com",
+        // First Level Nesting
+        preferences: {
+          theme: "dark",
+          notifications: true,
+          languages: ["English", "Spanish"],
+        },
+        // Second Level Nesting
+        address: {
+          city: "New York",
+          zip: 10001,
+          coordinates: {
+            lat: 40.7128,
+            lng: -74.006,
+          },
+        },
+      };
+      const userProfiles = new Map();
+      userProfiles.set("Amzad", Amzad);
+      userProfiles.set("Sathwika", sathvika);
+      userProfiles.set("renuka", renuka);
+    </script>
+  </body>
+</html>
